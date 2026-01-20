@@ -1,0 +1,6 @@
+httpswww.kaggle.comdatasetskapturovalexandergold-and-silver-prices-2013-2023
+
+https://www.kaggle.com/datasets/guillemservera/precious-metals-data
+
+https://www.kaggle.com/datasets/muhammadaammartufail/silver-prices-10-year-data-and-2026-forecast
+-silver_prices_data, silver_price_forecast_2026
