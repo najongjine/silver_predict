@@ -68,7 +68,7 @@ print('All libraries imported successfully!')
 """## 1. Data Loading & Overview"""
 
 # Load the data
-df = pd.read_csv('/kaggle/input/silver-prices-10-year-data-and-2026-forecast/silver_prices_data.csv')
+df = pd.read_csv('silver_prices_data.csv')
 
 print('\n' + '='*50)
 print('Phase 1: Raw Data Loaded (데이터 로딩 직후)')
@@ -311,6 +311,7 @@ model_full = Prophet(
     changepoint_prior_scale=0.05,
     seasonality_prior_scale=10
 )
+exit()
 model_full.fit(prophet_df)
 
 # Forecast for Q1 2026 (Jan, Feb, Mar)
