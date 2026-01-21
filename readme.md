@@ -10,3 +10,5 @@ nvidia-smi
 
 uv pip uninstall torch torchvision
 uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cu130
+
+PatchTST / DLinear 모델도 해보기
