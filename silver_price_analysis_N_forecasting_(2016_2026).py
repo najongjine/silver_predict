@@ -13,12 +13,8 @@ Original file is located at
 # ENVIRONMENT SO THERE MAY BE MISSING LIBRARIES USED BY YOUR
 # NOTEBOOK.
 import kagglehub
-muhammadaammartufail_silver_prices_10_year_data_and_2026_forecast_path = kagglehub.dataset_download('muhammadaammartufail/silver-prices-10-year-data-and-2026-forecast')
-
-print('Data source import complete.')
 
 from IPython.display import Image, display
-display(Image(filename='/kaggle/input/silver-notebook-thumbnail/silver_notebook_thumbnail.png'))
 
 """# Silver Price Analysis & Forecasting (2016-2026)
 
