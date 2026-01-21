@@ -1,0 +1,124 @@
+
+==================================================
+Phase 1: Raw Data Loaded (데이터 로딩 직후)
+==================================================
+데이터의 첫 5줄을 봅니다 (Head):
+         Date   Price   Close    High     Low  Open  Volume
+0  2016-01-19  14.110  14.110  14.065  14.065     3     NaN
+1  2016-01-20  14.147  14.147  14.147  14.147     1     NaN
+2  2016-01-21  14.083  14.083  14.083  14.083     2     NaN
+3  2016-01-22  14.043  14.290  14.043  14.290     7     NaN
+4  2016-01-25  14.240  14.240  14.095  14.095     8     NaN
+
+데이터의 모양 (행, 열): (2513, 7)
+==================================================
+
+
+==================================================
+Phase 2: Index Setting (날짜를 인덱스로 설정)
+==================================================
+날짜가 인덱스로 들어간 후 데이터:
+             Price   Close    High     Low  Open  Volume
+Date
+2016-01-19  14.110  14.110  14.065  14.065     3     NaN
+2016-01-20  14.147  14.147  14.147  14.147     1     NaN
+2016-01-21  14.083  14.083  14.083  14.083     2     NaN
+2016-01-22  14.043  14.290  14.043  14.290     7     NaN
+2016-01-25  14.240  14.240  14.095  14.095     8     NaN
+==================================================
+
+Date Range: 2016-01-19 to 2026-01-15
+Total Trading Days: 2,513
+Total Years: 10.0 years
+Dataset Information:
+<class 'pandas.core.frame.DataFrame'>
+DatetimeIndex: 2513 entries, 2016-01-19 to 2026-01-15
+Data columns (total 5 columns):
+ #   Column  Non-Null Count  Dtype
+---  ------  --------------  -----
+ 0   Price   2513 non-null   float64
+ 1   Close   2513 non-null   float64
+ 2   High    2513 non-null   float64
+ 3   Low     2513 non-null   float64
+ 4   Open    2513 non-null   int64
+dtypes: float64(4), int64(1)
+memory usage: 117.8 KB
+None
+
+Statistical Summary:
+Missing Values Analysis:
+Price    0
+Close    0
+High     0
+Low      0
+Open     0
+dtype: int64
+
+Missing value percentage: 0.00%
+Yearly Silver Price Statistics:
+
+==================================================
+Phase 3: Moving Averages Added (이동평균선 추가)
+==================================================
+MA_7, MA_30 같은 새로운 줄(Column)이 생겼는지 확인:
+                Price       MA_7      MA_30
+Date
+2026-01-09  78.884003  75.445573  66.238067
+2026-01-12  84.610001  77.513573  67.294534
+2026-01-13  85.876999  79.702287  68.275567
+2026-01-14  90.869003  81.803001  69.357267
+2026-01-15  91.875999  83.423859  70.487034
+==================================================
+
+Augmented Dickey-Fuller Test:
+   ADF Statistic: 5.2203
+   p-value: 1.0000
+   Critical Values:
+      1%: -3.4330
+      5%: -2.8627
+      10%: -2.5674
+
+   Series is non-stationary
+
+==================================================
+Phase 4: Feature Engineering (보조 지표 추가)
+==================================================
+Lag(과거 가격), Volatility(변동성) 등 새로운 힌트들이 생겼습니다.     
+새로 생긴 컬럼들: ['Price', 'Close', 'High', 'Low', 'Open', 'Year', 'MA_7', 'MA_30', 'MA_90', 'MA_365', 'Daily_Return', 'Volatility_7d', 'Volatility_30d', 'Price_Range', 'Month', 'DayOfWeek', 'Quarter', 'Price_Lag_1', 'Price_Lag_7', 'Price_Lag_14', 'Price_Lag_30']
+
+데이터 예시 (마지막 5줄):
+                Price  Daily_Return  Volatility_7d  Price_Lag_1       
+Date
+2026-01-09  78.884003      5.578456       6.341158    74.716003       
+2026-01-12  84.610001      7.258757       5.033074    78.884003       
+2026-01-13  85.876999      1.497457       4.978246    84.610001       
+2026-01-14  90.869003      5.812970       4.677393    85.876999       
+2026-01-15  91.875999      1.108184       4.491856    90.869003       
+==================================================
+
+Feature Engineering Complete!
+Total Features: 21
+
+==================================================
+Phase 5: Prophet Data Prep (예언가 로봇용 데이터 준비)
+==================================================
+Prophet 모델은 "ds"(날짜)와 "y"(값) 두 개만 봅니다.
+변환된 데이터 꼬라지:
+          ds       y
+0 2016-01-19  14.110
+1 2016-01-20  14.147
+2 2016-01-21  14.083
+3 2016-01-22  14.043
+4 2016-01-25  14.240
+==================================================
+
+Training samples: 2010
+Testing samples: 503
+16:00:55 - cmdstanpy - INFO - Chain [1] start processing
+16:00:57 - cmdstanpy - INFO - Chain [1] done processing
+Prophet model trained successfully!
+Prophet Model Evaluation Metrics:
+   RMSE: $14.35
+   MAE:  $9.80
+   MAPE: 23.21%
+   R2:   -0.5807
